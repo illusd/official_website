@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>illusd Org</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666;
+      --accent: #6c5ce7;
+      --accent-light: #a29bfe;
+      --card-bg: #fafafa;
+      --border: #eee;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "新細明體", "PMingLiU", "MingLiU", "Noto Serif TC", serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* 背景微光效果 */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(108,92,231,0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(162,155,254,0.05) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .logo {
+      display: inline-block;
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #1a1a1a 0%, #444 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      font-family: "新細明體", "PMingLiU", serif;
+    }
+
+    /* Intro Card */
+    .intro {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--accent-light));
+    }
+
+    .intro p {
+      font-size: 1.15rem;
+      color: #333;
+    }
+
+    .intro .name {
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    /* Links Section */
+    .section-title {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-light);
+      box-shadow: 0 8px 24px rgba(108,92,231,0.12);
+    }
+
+    .link-card .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+      color: var(--accent);
+    }
+
+    .link-card .info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-card .title {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .link-card .url {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .link-card .arrow {
+      font-size: 1.1rem;
+      color: #ccc;
+      transition: all 0.25s ease;
+    }
+
+    .link-card:hover .arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 64px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #aaa;
+      font-family: "Noto Sans TC", sans-serif;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* 響應式 */
+    @media (max-width: 520px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      .container {
+        padding: 40px 18px 60px;
+      }
+      .intro {
+        padding: 24px 20px;
+      }
+      .intro p {
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">org.illusd.com</div>
+      <h1>illusd Org</h1>
+      <p class="subtitle">第二據點 · Second Base</p>
+    </header>
+
+    <section class="intro">
+      <p>
+        我叫做<span class="name">Ian</span>，今年11歲，<br>
+        歡迎來到我的第二網站 <strong>org.illusd.com</strong>
+      </p>
+    </section>
+
+    <section>
+      <div class="section-title">相關連結</div>
+      <div class="links">
+        <a class="link-card" href="https://discord.gg/MM5RWuYVhu" target="_blank" rel="noopener">
+          <div class="icon">💬</div>
+          <div class="info">
+            <div class="title">僞人實驗室 Discord</div>
+            <div class="url">discord.gg/MM5RWuYVhu</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="link-card" href="https://illusd.com" target="_blank" rel="noopener">
+          <div class="icon">🌐</div>
+          <div class="info">
+            <div class="title">Illusd 第一網站</div>
+            <div class="url">illusd.com</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="link-card" href="https://github.com/illusd" target="_blank" rel="noopener">
+          <div class="icon">📦</div>
+          <div class="info">
+            <div class="title">Github</div>
+            <div class="url">github.com/illusd</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="link-card" href="https://github.com/illusd-com" target="_blank" rel="noopener">
+          <div class="icon">🧑‍💻</div>
+          <div class="info">
+            <div class="title">Github (Personal)</div>
+            <div class="url">github.com/illusd-com</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="link-card" href="https://ban-ban.net/u/illusd" target="_blank" rel="noopener">
+          <div class="icon">🎮</div>
+          <div class="info">
+            <div class="title">BanBan</div>
+            <div class="url">ban-ban.net/u/illusd</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="link-card" href="https://threads.com/@iilluussdd" target="_blank" rel="noopener">
+          <div class="icon">🧵</div>
+          <div class="info">
+            <div class="title">Threads（脆）</div>
+            <div class="url">threads.com/@iilluussdd</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      Made by Ian · <a href="https://illusd.com">illusd.com</a>
+    </footer>
+  </div>
+</body>
+</html>
