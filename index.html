@@ -19,11 +19,7 @@
       --radius: 16px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: "新細明體", "PMingLiU", "MingLiU", "Noto Serif TC", serif;
@@ -34,14 +30,11 @@
       overflow-x: hidden;
     }
 
-    /* 背景微光效果 */
     body::before {
       content: "";
       position: fixed;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
       background: 
         radial-gradient(circle at 20% 30%, rgba(108,92,231,0.06) 0%, transparent 40%),
         radial-gradient(circle at 80% 70%, rgba(162,155,254,0.05) 0%, transparent 40%);
@@ -54,14 +47,10 @@
       z-index: 1;
       max-width: 720px;
       margin: 0 auto;
-      padding: 60px 24px 80px;
+      padding: 60px 24px 100px;
     }
 
-    /* Header */
-    header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
+    header { text-align: center; margin-bottom: 56px; }
 
     .logo {
       display: inline-block;
@@ -70,7 +59,6 @@
       font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--accent);
       background: linear-gradient(135deg, #6c5ce7, #a29bfe);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -90,13 +78,8 @@
       background-clip: text;
     }
 
-    .subtitle {
-      font-size: 1rem;
-      color: var(--muted);
-      font-family: "新細明體", "PMingLiU", serif;
-    }
+    .subtitle { font-size: 1rem; color: var(--muted); }
 
-    /* Intro Card */
     .intro {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -111,24 +94,14 @@
     .intro::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
       background: linear-gradient(180deg, var(--accent), var(--accent-light));
     }
 
-    .intro p {
-      font-size: 1.15rem;
-      color: #333;
-    }
+    .intro p { font-size: 1.15rem; color: #333; }
+    .intro .name { font-weight: bold; color: var(--accent); }
 
-    .intro .name {
-      font-weight: bold;
-      color: var(--accent);
-    }
-
-    /* Links Section */
     .section-title {
       font-family: "Noto Sans TC", sans-serif;
       font-size: 0.9rem;
@@ -149,10 +122,7 @@
       background: var(--border);
     }
 
-    .links {
-      display: grid;
-      gap: 12px;
-    }
+    .links { display: grid; gap: 12px; }
 
     .link-card {
       display: flex;
@@ -165,8 +135,6 @@
       text-decoration: none;
       color: var(--text);
       transition: all 0.25s ease;
-      position: relative;
-      overflow: hidden;
     }
 
     .link-card:hover {
@@ -176,8 +144,7 @@
     }
 
     .link-card .icon {
-      width: 42px;
-      height: 42px;
+      width: 42px; height: 42px;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -188,18 +155,13 @@
       color: var(--accent);
     }
 
-    .link-card .info {
-      flex: 1;
-      min-width: 0;
-    }
-
+    .link-card .info { flex: 1; min-width: 0; }
     .link-card .title {
       font-family: "Noto Sans TC", sans-serif;
       font-size: 1.05rem;
       font-weight: 500;
       margin-bottom: 2px;
     }
-
     .link-card .url {
       font-size: 0.82rem;
       color: var(--muted);
@@ -207,19 +169,37 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .link-card .arrow {
       font-size: 1.1rem;
       color: #ccc;
       transition: all 0.25s ease;
     }
-
     .link-card:hover .arrow {
       color: var(--accent);
       transform: translateX(4px);
     }
 
-    /* Footer */
+    .join-area { margin-top: 56px; text-align: center; }
+
+    .join-btn {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 16px 48px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(108,92,231,0.3);
+      transition: all 0.25s ease;
+      letter-spacing: 0.05em;
+    }
+    .join-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(108,92,231,0.4);
+    }
+
     footer {
       margin-top: 64px;
       text-align: center;
@@ -227,30 +207,108 @@
       color: #aaa;
       font-family: "Noto Sans TC", sans-serif;
     }
+    footer a { color: var(--accent); text-decoration: none; }
 
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 440px;
+      padding: 36px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    .modal h2 {
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .modal p {
+      font-size: 0.98rem;
+      color: #555;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .modal .form-group { margin-bottom: 18px; }
+    .modal label {
+      display: block;
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #333;
+    }
+    .modal input, .modal select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: "Noto Sans TC", "新細明體", sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .modal input:focus, .modal select:focus { border-color: var(--accent); }
+    .modal input:disabled {
+      background: #f5f5f5;
+      color: #666;
     }
 
-    /* 響應式 */
+    .modal-btns { display: flex; gap: 12px; margin-top: 28px; }
+    .btn {
+      flex: 1;
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      font-family: "Noto Sans TC", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: white;
+    }
+    .btn-primary:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn-secondary { background: #f0f0f0; color: #555; }
+    .btn-secondary:hover { background: #e5e5e5; }
+
+    .success-msg { text-align: center; }
+    .success-msg h2 { color: var(--accent); margin-bottom: 16px; }
+    .success-msg p { text-align: left; margin-bottom: 10px; }
+    .email-note {
+      background: #f8f7ff;
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin: 18px 0;
+      font-size: 0.95rem;
+    }
+
     @media (max-width: 520px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      .container {
-        padding: 40px 18px 60px;
-      }
-      .intro {
-        padding: 24px 20px;
-      }
-      .intro p {
-        font-size: 1.05rem;
-      }
+      h1 { font-size: 2.2rem; }
+      .container { padding: 40px 18px 80px; }
     }
   </style>
 </head>
@@ -280,7 +338,6 @@
           </div>
           <div class="arrow">→</div>
         </a>
-
         <a class="link-card" href="https://illusd.com" target="_blank" rel="noopener">
           <div class="icon">🌐</div>
           <div class="info">
@@ -289,7 +346,6 @@
           </div>
           <div class="arrow">→</div>
         </a>
-
         <a class="link-card" href="https://github.com/illusd" target="_blank" rel="noopener">
           <div class="icon">📦</div>
           <div class="info">
@@ -298,7 +354,6 @@
           </div>
           <div class="arrow">→</div>
         </a>
-
         <a class="link-card" href="https://github.com/illusd-com" target="_blank" rel="noopener">
           <div class="icon">🧑‍💻</div>
           <div class="info">
@@ -307,7 +362,6 @@
           </div>
           <div class="arrow">→</div>
         </a>
-
         <a class="link-card" href="https://ban-ban.net/u/illusd" target="_blank" rel="noopener">
           <div class="icon">🎮</div>
           <div class="info">
@@ -316,7 +370,6 @@
           </div>
           <div class="arrow">→</div>
         </a>
-
         <a class="link-card" href="https://threads.com/@iilluussdd" target="_blank" rel="noopener">
           <div class="icon">🧵</div>
           <div class="info">
@@ -328,9 +381,169 @@
       </div>
     </section>
 
+    <div class="join-area">
+      <button class="join-btn" onclick="startGithubAuth()">JOIN US</button>
+    </div>
+
     <footer>
       Made by Ian · <a href="https://illusd.com">illusd.com</a>
     </footer>
   </div>
+
+  <!-- 表單 Modal -->
+  <div class="modal-overlay" id="modal-form">
+    <div class="modal">
+      <h2>加入申請表單</h2>
+      <p>Github 帳號已成功連結，請填寫以下資料：</p>
+      
+      <div class="form-group">
+        <label>Github 帳號</label>
+        <input type="text" id="github-username" disabled>
+      </div>
+
+      <div class="form-group">
+        <label>請輸入你的 Email</label>
+        <input type="email" id="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>請輸入你的暱稱</label>
+        <input type="text" id="nickname" placeholder="你的暱稱" required>
+      </div>
+
+      <div class="form-group">
+        <label>請選擇你的年齡層</label>
+        <select id="age" required>
+          <option value="">請選擇</option>
+          <option value="15-20">15-20</option>
+          <option value="20-30">20-30</option>
+          <option value="30-40">30-40</option>
+          <option value="40以上">40以上</option>
+        </select>
+      </div>
+
+      <div class="modal-btns">
+        <button class="btn btn-secondary" onclick="closeAllModals()">取消</button>
+        <button class="btn btn-primary" onclick="submitApplication()">加入</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 成功 Modal -->
+  <div class="modal-overlay" id="modal-success">
+    <div class="modal success-msg">
+      <h2>申請成功！</h2>
+      <p>感謝你加入 <strong>Illusd Org</strong> 團隊申請</p>
+      <p>您的申請將會在 3 天內由 Ian 回覆，請您加入 Discord 伺服器，取得最新申請訊息。</p>
+      <p>若您未加入伺服器，我們會透過 Email 向您聯絡。</p>
+      <div class="email-note">
+        請注意：我們的電子郵件為 <strong>iilluussdd@gmail.com</strong>
+      </div>
+      <div class="modal-btns">
+        <button class="btn btn-primary" onclick="closeAllModals()">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CLIENT_ID = 'Ov23liQoXoGwKRNBrtcR';
+    const REDIRECT_URI = 'https://org.illusd.com/api/auth/callback';
+    const WEBHOOK = 'https://discord.com/api/webhooks/1536718647987544175/5w42paHscDa4l7yIJ5ga51vkYkGFNF3g_hhJUs8BLpP6sxwLjwZdmIfZLZxRo6NKLWpk';
+
+    // 開始 GitHub 授權
+    function startGithubAuth() {
+      const url = `https://github.com/login/oauth/authorize?client_id=\( {CLIENT_ID}&redirect_uri= \){encodeURIComponent(REDIRECT_URI)}&scope=read:user`;
+      window.location.href = url;
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+      // 清掉網址上的參數
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // 頁面載入時檢查是否從 GitHub 授權回來
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const github = params.get('github');
+      const error = params.get('error');
+
+      if (error) {
+        alert('GitHub 授權失敗，請再試一次');
+        window.history.replaceState({}, document.title, window.location.pathname);
+        return;
+      }
+
+      if (github) {
+        document.getElementById('github-username').value = github;
+        document.getElementById('modal-form').classList.add('active');
+      }
+    });
+
+    // 送出申請
+    async function submitApplication() {
+      const github = document.getElementById('github-username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const nickname = document.getElementById('nickname').value.trim();
+      const age = document.getElementById('age').value;
+
+      if (!github || !email || !nickname || !age) {
+        alert('請完整填寫所有欄位！');
+        return;
+      }
+
+      const content = 
+`**📢 新加入申請**
+
+**申請人暱稱**：${nickname}
+**申請人 Email**：${email}
+**申請人 Github 帳號**：${github}
+**年齡層**：${age}
+
+---
+來自 org.illusd.com`;
+
+      try {
+        await fetch(WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content })
+        });
+
+        closeAllModals();
+        setTimeout(() => {
+          document.getElementById('modal-success').classList.add('active');
+        }, 300);
+      } catch (err) {
+        alert('送出失敗，請稍後再試');
+        console.error(err);
+      }
+    }
+
+    // 每 50 分鐘定時訊息（分頁需保持開啟）
+    function getSendCount() {
+      return parseInt(localStorage.getItem('illusd_timer_count') || '0', 10);
+    }
+    function setSendCount(n) {
+      localStorage.setItem('illusd_timer_count', n);
+    }
+
+    async function sendTimerMessage() {
+      const count = getSendCount() + 1;
+      const content = `定時訊息測試  目前為第${count}次發送成功`;
+      try {
+        await fetch(WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content })
+        });
+        setSendCount(count);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    setInterval(sendTimerMessage, 50 * 60 * 1000);
+  </script>
 </body>
 </html>
