@@ -446,19 +446,25 @@
   </div>
 
   <script>
+    // ========== 設定區 ==========
     const CLIENT_ID = 'Ov23liQoXoGwKRNBrtcR';
     const REDIRECT_URI = 'https://org.illusd.com/api/auth/callback';
     const WEBHOOK = 'https://discord.com/api/webhooks/1536718647987544175/5w42paHscDa4l7yIJ5ga51vkYkGFNF3g_hhJUs8BLpP6sxwLjwZdmIfZLZxRo6NKLWpk';
+    // ===========================
 
     // 開始 GitHub 授權
     function startGithubAuth() {
-      const url = `https://github.com/login/oauth/authorize?client_id=\( {CLIENT_ID}&redirect_uri= \){encodeURIComponent(REDIRECT_URI)}&scope=read:user`;
-      window.location.href = url;
+      const params = new URLSearchParams({
+        client_id: CLIENT_ID,
+        redirect_uri: REDIRECT_URI,
+        scope: 'read:user'
+      });
+      window.location.href = `https://github.com/login/oauth/authorize?${params.toString()}`;
     }
 
     function closeAllModals() {
       document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-      // 清掉網址上的參數
+      // 清掉網址參數
       window.history.replaceState({}, document.title, window.location.pathname);
     }
 
